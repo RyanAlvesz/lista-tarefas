@@ -2,17 +2,18 @@ package br.senai.sp.jandira.model;
 
 public class Estado {
 
-    public boolean Estado(int estado){
+    public String Estado(int estado){
 
-        boolean estadoTarefa = false;
+        String estadoTarefa = "Concluída";
 
         switch (estado){
 
             case 1:
-                estadoTarefa = true;
+                break;
 
             case 2:
-                estadoTarefa = false;
+                estadoTarefa = "Não concluída";
+                break;
         }
 
         return estadoTarefa;

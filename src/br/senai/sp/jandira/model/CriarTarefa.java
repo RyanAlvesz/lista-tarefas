@@ -15,6 +15,7 @@ public class CriarTarefa {
     // Instancia ListaTarefas
     ListaTarefas listarTarefas = new ListaTarefas();
 
+    int resposta;
     public Tarefa CriarTarefa(){
 
         System.out.println("----------------------------");
@@ -35,11 +36,11 @@ public class CriarTarefa {
         System.out.print("");
 
         System.out.print("Estado [1 - Concluída] [2 - Não Concluída]: ");
-        int resposta = teclado.nextInt();
+        resposta = teclado.nextInt();
+        teclado.nextLine();
         tarefa.estado = estado.Estado(resposta);
         System.out.println("");
 
-        listarTarefas.AdicionarTarefa(tarefa);
         return tarefa;
 
     }

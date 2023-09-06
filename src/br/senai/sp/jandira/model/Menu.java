@@ -7,9 +7,6 @@ public class Menu {
     // Instancia Scanner
     Scanner teclado = new Scanner(System.in);
 
-    // Instancia CriarTarefa
-    CriarTarefa criarTarefa = new CriarTarefa();
-
     // Instancia ListarTarefas
     ListaTarefas listaTarefas = new ListaTarefas();
 
@@ -40,10 +37,14 @@ public class Menu {
                     break;
 
                 case 2:
-                    criarTarefa.CriarTarefa();
+                    // Instancia CriarTarefa
+                    CriarTarefa criarTarefa = new CriarTarefa();
+                    Tarefa tarefa = criarTarefa.CriarTarefa();
+                    listaTarefas.AdicionarTarefa(tarefa);
                     break;
 
                 case 3:
+                    listaTarefas.EditarTarefa();
                     break;
 
                 case 4:
