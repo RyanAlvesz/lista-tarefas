@@ -10,6 +10,15 @@ public class Menu {
     // Instancia ListarTarefas
     ListaTarefas listaTarefas = new ListaTarefas();
 
+    // Instancia ListaUsuarios
+    ListaUsuarios listarUsuarios = new ListaUsuarios();
+
+    // Instancia Usuario
+    Usuario usuario = new Usuario();
+
+    // Instancia Atribuicao
+    Atribuicao atribuicao = new Atribuicao();
+
         public void Menu(){
 
             boolean continuar = true;
@@ -24,7 +33,11 @@ public class Menu {
             System.out.println("[1 - Listar tarefas]");
             System.out.println("[2 - Criar tarefa]");
             System.out.println("[3 - Editar tarefas]");
-            System.out.println("[4 - Sair]");
+            System.out.println("[4 - Cadastrar Usuário]");
+            System.out.println("[5 - Listar Usuário]");
+            System.out.println("[6 - Atribuir tarefa para um Usuário]");
+            System.out.println("[7 - Listar Atribuições]");
+            System.out.println("[8 - Sair]");
             System.out.println("");
 
             int resposta = teclado.nextInt();
@@ -48,8 +61,27 @@ public class Menu {
                     break;
 
                 case 4:
+                    // Instancia Criar Usuario
+                    CriarUsuario criarUsuario = new CriarUsuario();
+                    Usuario usuario = criarUsuario.cadastrarUsuario();
+                    listarUsuarios.adicionarLista(usuario);
+                    break;
+
+                case 5:
+                    listarUsuarios.listarUsuarios();
+                    break;
+
+                case 6:
+                    atribuicao.atribuindo();
+                    break;
+
+                case 7:
+                    atribuicao.listarAtribuicoes();
+
+                case 8:
                     continuar = false;
                     break;
+
 
             }
 

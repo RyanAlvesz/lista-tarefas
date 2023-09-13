@@ -5,25 +5,29 @@ public class ListaTarefas {
 
     // Instancia Scanner
     Scanner teclado = new Scanner(System.in);
+
+    // Instancia Estado
+    Estado estado = new Estado();
+
     int i = 1, respostaEdicao, respostaRemocao, respostaListaEdicao, respostaCaracteristaEdicao, tamanhoLista;
     String novoValorTarefa;
 
     Tarefa tarefa=new Tarefa();
 
     // Criando Lista de Tarefas
-    List <Tarefa> Lista = new ArrayList<>();
+    List <Tarefa> lista = new ArrayList<>();
     public void AdicionarTarefa(Tarefa tarefa){
-        Lista.add(tarefa);
-        tamanhoLista = Lista.size();
+        lista.add(tarefa);
+        tamanhoLista = lista.size();
     }
     public void ListarTarefas(){
 
-        if(Lista.isEmpty()){
+        if(lista.isEmpty()){
             System.out.println("Não existem tarefas cadastradas");
             System.out.println("");
         }else{
 
-            for (Tarefa tarefa : Lista){
+            for (Tarefa tarefa : lista){
                 System.out.println("Tarefa " + i);
                 System.out.println("-----------------------------");
                 System.out.println("Título: " + tarefa.titulo);
@@ -41,7 +45,7 @@ public class ListaTarefas {
     }
     public void EditarTarefa() {
 
-        if (!Lista.isEmpty()) {
+        if (!lista.isEmpty()) {
 
             System.out.println("O que você deseja fazer?");
             System.out.println("------------------------");
@@ -66,7 +70,6 @@ public class ListaTarefas {
         }
 
     }
-
     void RemoverTarefa(){
         System.out.println("Qual tarefa você deseja remover?");
         System.out.println("--------------------------------");
@@ -77,14 +80,13 @@ public class ListaTarefas {
         System.out.println("");
 
         if (respostaRemocao == 0) {
-            Lista.clear();
+            lista.clear();
         } else if (respostaRemocao <= tamanhoLista) {
-            Lista.remove(respostaRemocao - 1);
+            lista.remove(respostaRemocao - 1);
         } else {
             System.out.println("Essa tarefa não existe");
         }
     }
-
     void EditarTarefas(){
         System.out.println("Qual tarefa você deseja editar?");
         System.out.println("-------------------------------");
@@ -97,34 +99,38 @@ public class ListaTarefas {
             System.out.println("[1 - Título]");
             System.out.println("[2 - Descrição]");
             System.out.println("[3 - Data de Vencimento]");
-            System.out.println("[4 - Estado]");
+            System.out.println("[4 - Estado] (1 - Concluída) (2 - Não Concluída)");
             respostaCaracteristaEdicao = teclado.nextInt();
+            teclado.nextLine();
 
             System.out.println("");
 
-            System.out.println("Qual será o novo valor?");
+            System.out.println("O que você deseja inserir?");
+            System.out.println("--------------------------");
             novoValorTarefa = teclado.nextLine();
-            teclado.next();
+
+            Tarefa tarefaEditada = lista.get (respostaListaEdicao - 1);
 
             switch (respostaCaracteristaEdicao) {
                 case 1:
-                    for (Tarefa t : Lista){
-                        if (t.titulo == "1"){
-                            tarefa.titulo = novoValorTarefa;
-                        }
-                    }
+                    tarefaEditada.titulo = novoValorTarefa;
+                    lista.set(respostaListaEdicao - 1, tarefaEditada);
                     break;
 
                 case 2:
-
+                    tarefaEditada.descricao = novoValorTarefa;
+                    lista.set(respostaListaEdicao - 1, tarefaEditada);
                     break;
 
                 case 3:
-
+                    tarefaEditada.dataVencimento = novoValorTarefa;
+                    lista.set(respostaListaEdicao - 1, tarefaEditada);
                     break;
 
                 case 4:
-
+                    int novoEstado = Integer.parseInt(novoValorTarefa);
+                    novoValorTarefa = estado.Estado(novoEstado);
+                    tarefaEditada.estado = novoValorTarefa;
                     break;
             }
 
@@ -136,6 +142,11 @@ public class ListaTarefas {
             EditarTarefas();
 
         }
+    }
+
+    public Tarefa getTarefa(int opcao){
+        Tarefa teste = lista.get(opcao - 1);
+        return teste;
     }
 
 }
